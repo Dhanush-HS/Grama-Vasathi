@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "130856839861",
+    "project_id": "grama-vasthi-b7dc4",
+    "storage_bucket": "grama-vasthi-b7dc4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:130856839861:android:ec9481fc66506be5882cfc",
+        "android_client_info": {
+          "package_name": "com.example.gramavasathi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJdlNlLVoPHegwU8LYeI0LVKmAArKD1m4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

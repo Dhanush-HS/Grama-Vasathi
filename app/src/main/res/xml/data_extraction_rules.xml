@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Sample data extraction rules. In your app, you may want to modify this
+   to suit your needs.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="file" path="."/>
+        <include domain="database" path="."/>
+        <include domain="sharedpref" path="."/>
+    </cloud-backup>
+</data-extraction-rules>

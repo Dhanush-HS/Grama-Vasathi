@@ -1,0 +1,75 @@
+# Built application / archives
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# ART/Dalvik
+*.dex
+
+# Java / JVM
+*.class
+
+# Generated outputs
+bin/
+gen/
+out/
+
+# Release output (keep signing configs out of VCS)
+release/
+
+# Gradle
+.gradle/
+**/build/
+build/
+
+# Local SDK path & machine-specific — never commit
+local.properties
+
+# Logs & dumps
+*.log
+*.hprof
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+.navigation/
+captures/
+
+# External native / CMake
+.externalNativeBuild
+.cxx/
+*.so.cache
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VS Code (optional local settings)
+.vscode/
+
+# Keystore / signing secrets
+*.jks
+*.keystore
+*.p12
+*.pem
+keystore.properties
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# NDK / lint
+obj/
+
+# Kotlin compiler sessions (sometimes appear at repo root)
+.kotlin/
+
+# Temporary / misc
+*.tmp
+*.temp
+*.swp
+*~
