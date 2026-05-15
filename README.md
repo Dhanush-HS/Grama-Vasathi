@@ -1,277 +1,160 @@
-# 🌾 Grama Vasathi
-### *Matti-Vasane — Scent of the Soil*
+# Grama Vasathi
 
-<p align="center">
-  <b>Rural Home-stay Accelerator for Karnataka</b>
-</p>
+Rural homestay discovery and host readiness for Karnataka — *Rural Home-stay Accelerator* · *Matti-Vasane (Scent of the Soil)*.
 
 ---
 
-# 📖 About
+## Problem statement
 
-**Grama Vasathi** is an Android application designed to promote authentic rural tourism in Karnataka by helping travelers discover and book village homestays.
-
-The platform also includes a dedicated **Host Readiness Experience** that enables property owners to prepare and manage their homestays efficiently.
+Many travelers want **authentic rural stays** (farm experiences, local culture, verified hygiene) but lack a single, trustworthy way to **discover, compare, and book** homestays. Hosts, in turn, need a **simple checklist** to prepare listings and operations before welcoming guests. This app addresses both sides: a **guest** flow for browsing, searching, and booking Firestore-backed stays, and a **host** flow focused on **readiness** (wizard checklist) separate from guest discovery — with **Firebase Auth**, persisted sessions, and optional demo accounts for onboarding and QA.
 
 ---
 
-# 🌍 Project Goals
+## Features
 
-- 🌱 Rural income generation
-- 🏡 Agri-tourism promotion
-- 🤝 Cultural exchange
-- ♻️ Sustainable tourism
-- 🎓 Rural hospitality skill development
-
----
-
-# ✨ Features
-
-## 🔐 Authentication & Onboarding
-
-- Splash screen with session-based routing
-- Guest / Host role selection
-- Firebase Email & Password Authentication
-- Persistent login sessions
-- Protected navigation using Auth Gate
-- Auto-created guest profiles in Firestore
-- Demo account support
+| Area | What the app does |
+|------|-------------------|
+| **Auth** | Splash → **Welcome** (Guest vs Host) → email/password login or sign-up; Firebase session persists until sign out; **AuthNavigationGate** blocks protected routes when signed out. |
+| **Guest** | **Discover** — browse `stays`, activity filters (via **Farm**), search, stay detail, **booking** with dates and Firestore `bookings`, success screen; **Culture** guide; **Profile** — stats, live past bookings, cancel booking, switch to host. |
+| **Host** | **Readiness** — multi-step **Host Wizard** (basic setup, facilities, media, safety/food, pricing) with checklist state in Firestore; **Profile** — switch to guest; bottom nav: Readiness · Profile. |
+| **Data** | Firestore `stays`, `bookings`, `guests`, host wizard progress; **auto-seed** four Karnataka farmstays when `stays` is empty (stable IDs e.g. `stay_patil_dharwad`); **DataStore** remembers guest vs host UI mode. |
+| **UX** | Material 3 (cream/brown theme), adaptive launcher icon, Android 12+ **SplashScreen** API, Coil images, Hilt DI, Navigation Compose. |
+| **Demo** | “Fill demo credentials” on login; demo emails can **auto-register** on first sign-in (`DemoCredentials` + `AuthViewModel`). |
 
 ---
 
-## 🏡 Guest Experience
-
-### 🔍 Discover Rural Stays
-
-- Browse farm stays from Firestore
-- Search by:
-  - Stay name
-  - District
-  - Activities
-- Filter stays using activity tabs
-
-### 📍 Stay Details
-
-- Stay image gallery
-- Amenities overview
-- Rural experience information
-
-### 📅 Booking System
-
-- Date selection
-- Price preview
-- Booking confirmation summary
-
-### 👤 Guest Profile
-
-- View past bookings
-- Cancel bookings
-- Switch to Host mode
-- Sign out
-
-### 🌾 Rural Culture Guide
-
-- Traditional etiquette
-- Local customs
-- Kannada phrases
-- Rural travel guidance
-
----
-
-## 🎓 Host Experience
-
-### Host Readiness Wizard
-
-A multi-step onboarding workflow for rural property owners.
-
-### 📋 Checklist Categories
-
-- Basic setup
-- Facilities
-- Media uploads
-- Safety & Food
-- Pricing configuration
-
-### ⚡ Features
-
-- Firestore-based progress persistence
-- Host-focused dashboard
-- Switch back to Guest mode
-
----
-
-# ☁️ Backend & Data
-
-## Firestore Collections
-
-```text
-stays
-bookings
-guests
-host_wizard_progress
-```
-
----
-
-## 🌱 Auto Seed Data
-
-If the `stays` collection is empty, the app automatically seeds:
-
-- 4 Karnataka rural homestays
-- Stable stay IDs
-
-### Example Stay ID
-
-```text
-stay_patil_dharwad
-```
-
----
-
-# 🎨 UI & Platform Features
-
-- Material 3 UI
-- Cream & brown rural theme
-- Adaptive launcher icon
-- Android 12+ SplashScreen API
-- Navigation Compose with typed routes
-- Coil image loading
-- Hilt dependency injection
-- Kotlin Coroutines & Flow
-- DataStore Preferences
-
----
-
-# 🛠️ Tech Stack
+## Tech stack
 
 | Layer | Technology |
-|---|---|
+|--------|------------|
 | Language | Kotlin |
 | UI | Jetpack Compose, Material 3 |
-| Architecture | MVVM |
-| Dependency Injection | Hilt |
-| Async | Kotlin Coroutines, Flow |
+| DI | Hilt (Dagger) |
+| Concurrency | Coroutines, Flow |
 | Backend | Firebase Authentication, Cloud Firestore |
-| Image Loading | Coil |
-| Local Storage | DataStore Preferences |
+| Images | Coil |
+| Local state | DataStore Preferences |
+| Build | Gradle (Kotlin DSL), Android Gradle Plugin 8.x |
 
 ---
 
-# 📁 Project Structure
+## Installation
 
-```text
-app/src/main/java/com/example/gramavasathi/
+1. **Prerequisites**
+   - [Android Studio](https://developer.android.com/studio) (Hedgehog or newer recommended).
+   - **JDK 17** (match your Studio / AGP requirements).
+   - **Android SDK** with API **34** installed (`compileSdk` / `targetSdk` 34; `minSdk` 26).
 
-├── MainActivity.kt
-├── GramaVasathiApp.kt
-├── data/
-├── domain/
-├── di/
-├── navigation/
-├── ui/
-│   ├── screens/
-│   └── theme/
-├── viewmodel/
-└── demo/
-```
+2. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd grama-vasthi
+   ```
 
----
+3. **Firebase**
+   - Create a [Firebase](https://console.firebase.google.com) project.
+   - Add an Android app with package **`com.example.gramavasathi`** (or align `applicationId` in `app/build.gradle.kts` with your Firebase app).
+   - Download **`google-services.json`** into the **`app/`** module (next to `app/build.gradle.kts`).
+   - Enable **Authentication → Sign-in method → Email/Password**.
+   - Create a **Cloud Firestore** database and set **security rules** appropriate for production before launch.
 
-# 📋 Requirements
+4. **Local SDK path**
+   - Open the project in Android Studio; it creates **`local.properties`** with `sdk.dir`. This file is **gitignored** — do not commit it.
 
-- Android Studio Hedgehog or newer
-- JDK 17
-- Android SDK 34
-- Minimum SDK 26
-
-## Firebase Services
-
-Enable:
-
-- Firebase Authentication
-- Cloud Firestore
+5. **Sync Gradle**  
+   Use **File → Sync Project with Gradle Files** in Android Studio, or rely on the first Gradle command below.
 
 ---
 
-# 🚀 Getting Started
+## Run
 
-## 1️⃣ Clone Repository
-
-```bash
-git clone <your-repository-url>
-```
-
-## 2️⃣ Firebase Setup
-
-### Create Firebase Project
-
-Add Android app:
-
-```text
-com.example.gramavasathi
-```
-
-### Download Configuration File
-
-Download:
-
-```text
-google-services.json
-```
-
-Place it inside:
-
-```text
-app/
-```
-
-### Enable Firebase Services
-
-- Email/Password Authentication
-- Cloud Firestore
-
----
-
-## 3️⃣ Build the Application
-
+**Debug APK (CLI):**
 ```bash
 ./gradlew :app:assembleDebug
 ```
+Output: `app/build/outputs/apk/debug/app-debug.apk`
+
+**Run on a device or emulator (CLI):**
+```bash
+./gradlew :app:installDebug
+```
+
+**From Android Studio:** select a device/emulator → **Run** ▶ (green play) on the `app` configuration.
 
 ---
 
-# 🧪 Demo Accounts
+## Screenshots
 
-| Role | Email | Password |
-|---|---|---|
-| Guest | guest.demo@gramavasathi.app | GuestDemo#2026 |
-| Host | host.patil@gramavasathi.app | HostDemo#2026 |
+_Add images here after you capture them (e.g. Discover, Search, Stay detail, Booking, Host wizard, Profile)._
+
+| Screen | Preview |
+|--------|---------|
+| Discover / Home | _TODO: `./docs/screenshots/discover.png`_ |
+| Search | _TODO_ |
+| Stay detail & Booking | _TODO_ |
+| Host readiness | _TODO_ |
+| Profile | _TODO_ |
+
+Tip: store screenshots under `docs/screenshots/` and link them with relative paths, e.g.  
+`![Discover](docs/screenshots/discover.png)`.
 
 ---
 
-# 🔒 Security Notes
+## Demo link
 
-Before making the repository public:
+| Resource | Link / notes |
+|----------|----------------|
+| **Play Store / web demo** | _Not published yet — add your Play Store URL or landing page when live._ |
+| **Internal APK** | Build with `./gradlew :app:assembleDebug` and distribute via Firebase App Distribution or internal testing track. |
+| **Demo accounts** | See [`DemoCredentials.kt`](app/src/main/java/com/example/gramavasathi/demo/DemoCredentials.kt): Guest `guest.demo@gramavasathi.app` / `GuestDemo#2026`; Host `host.patil@gramavasathi.app` / `HostDemo#2026`. Demo stay ID: **`stay_patil_dharwad`** (Patil Heritage Homestay). |
 
-- Restrict Firebase API keys
-- Configure secure Firestore rules
-- Review Firebase Authentication settings
+---
 
-## ❌ Do NOT Commit
+## Folder structure
 
-```text
-local.properties
-keystore.properties
-*.jks
-*.keystore
+```
+grama-vasthi/
+├── app/
+│   ├── build.gradle.kts
+│   ├── google-services.json          # from Firebase (do not commit secrets loosely; restrict API keys)
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       ├── java/com/example/gramavasathi/
+│       │   ├── MainActivity.kt
+│       │   ├── GramaVasathiApp.kt
+│       │   ├── data/                 # repositories, preferences, seeding
+│       │   ├── domain/               # models, repository interfaces
+│       │   ├── di/                   # Hilt modules
+│       │   ├── navigation/           # NavHost, screens, bottom bar, auth gate
+│       │   ├── demo/                 # DemoCredentials
+│       │   ├── ui/screens/           # Compose UI
+│       │   ├── ui/theme/
+│       │   └── viewmodel/
+│       └── res/                      # themes, drawables, mipmaps, xml
+├── gradle/wrapper/
+├── build.gradle.kts
+├── settings.gradle.kts
+├── gradle.properties
+├── gradlew / gradlew.bat
+├── README.md
+└── .gitignore
 ```
 
 ---
 
-# 🌍 Vision
+## Future improvements
 
-Grama Vasathi aims to digitally empower Karnataka’s rural tourism ecosystem by connecting travelers with authentic village experiences while creating sustainable opportunities for local communities.
-
+- **Firestore security rules** — tighten read/write rules for `stays`, `bookings`, `guests`, and host wizard documents; add server-side validation or Cloud Functions for sensitive writes.
+- **Search** — integrate Algolia or Firestore extensions for full-text search at scale instead of client-side filtering.
+- **Payments** — connect a real payment gateway; today booking is Firestore-centric without PSP integration.
+- **Push notifications** — booking confirmations, host reminders (FCM).
+- **Maps & directions** — link stays to Maps; filter by distance.
+- **Google Sign-In** — `play-services-auth` is already a dependency; wire optional social login.
+- **Release pipeline** — minify/R8, ProGuard rules for Hilt/Firebase, Play App Signing, internal → closed → open testing tracks.
+- **Screenshots & CI** — add `docs/screenshots/` and optional GitHub Actions for `assembleDebug` on PRs.
+- **Product** — host dashboard for managing listings and availability beyond the readiness wizard.
 
 ---
+
+
 
