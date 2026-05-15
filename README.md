@@ -137,7 +137,6 @@ grama-vasthi/
 - **Maps & directions** — link stays to Maps; filter by distance.
 - **Google Sign-In** — `play-services-auth` is already a dependency; wire optional social login.
 - **Release pipeline** — minify/R8, ProGuard rules for Hilt/Firebase, Play App Signing, internal → closed → open testing tracks.
-- **Screenshots & CI** — add `docs/screenshots/` and optional GitHub Actions for `assembleDebug` on PRs.
 - **Product** — host dashboard for managing listings and availability beyond the readiness wizard.
 
 ---
