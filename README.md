@@ -83,32 +83,18 @@ Output: `app/build/outputs/apk/debug/app-debug.apk`
 
 ---
 
-## Screenshots
+# 📱 Screenshots
 
-_Add images here after you capture them (e.g. Discover, Search, Stay detail, Booking, Host wizard, Profile)._
+| Home Screen | Host Readiness |
+|---|---|
+| ![](docs/screenshots/home.png) | ![](docs/screenshots/host_readiness.png) |
 
-| Screen | Preview |
-|--------|---------|
-| Discover / Home | _TODO: `./docs/screenshots/discover.png`_ |
-| Search | _TODO_ |
-| Stay detail & Booking | _TODO_ |
-| Host readiness | _TODO_ |
-| Profile | _TODO_ |
-
-Tip: store screenshots under `docs/screenshots/` and link them with relative paths, e.g.  
-`![Discover](docs/screenshots/discover.png)`.
+| Booking Screen | Profile Screen |
+|---|---|
+| ![](docs/screenshots/Booking.png) | ![](docs/screenshots/account.png) |
 
 ---
 
-## Demo link
-
-| Resource | Link / notes |
-|----------|----------------|
-| **Play Store / web demo** | _Not published yet — add your Play Store URL or landing page when live._ |
-| **Internal APK** | Build with `./gradlew :app:assembleDebug` and distribute via Firebase App Distribution or internal testing track. |
-| **Demo accounts** | See [`DemoCredentials.kt`](app/src/main/java/com/example/gramavasathi/demo/DemoCredentials.kt): Guest `guest.demo@gramavasathi.app` / `GuestDemo#2026`; Host `host.patil@gramavasathi.app` / `HostDemo#2026`. Demo stay ID: **`stay_patil_dharwad`** (Patil Heritage Homestay). |
-
----
 
 ## Folder structure
 
