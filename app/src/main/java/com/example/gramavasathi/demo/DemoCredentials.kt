@@ -8,8 +8,7 @@ import com.example.gramavasathi.navigation.AppFlow
  * You can still create users manually in Firebase Console if you prefer.
  *
  * Seeded Firestore stay IDs are stable only after a fresh seed — see [DemoCredentials] comments
- * in app startup logs when the `stays` collection was empty.
- *
+ 
  * **Chosen demo listing (1 of 4 seeds):** Patil Heritage Homestay — use [DEMO_STAY_ID] in URLs / booking.
  */
 object DemoCredentials {
